@@ -1,0 +1,323 @@
+<%- include('partials/header') %>
+    <br>
+    <!-- Titulo -->
+    <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h1>Registro de nuevo usuario</h1>
+      </div>
+    </div>
+    <br>
+    <!-- Formulario -->
+    <form action="/user/registro" method="POST" enctype="multipart/form-data" class="container" id="validateForm"> 
+
+      <div class="row">
+        <h2>Datos inicio de sesión</h2>
+      </div>  
+
+      <br>
+
+      <div class="row">
+        <!-- Email -->
+        <div class="col-md-4">
+            <div class='form-group'>
+              <label for=”email”> E-mail </label>
+              <input type="email" name="email" data-name="E-mail" id=”email” class="form-control 
+              <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                <%= hasErrorGetMessage('email',errors) ? 'is-invalid' : null %> 
+                <% } %>
+              "
+              value="<%= typeof OldData !== 'undefined' ? OldData.email : null %>"
+              >
+              <i class='invalid-feedback'>
+                <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                  <%= hasErrorGetMessage('email',errors) ? hasErrorGetMessage('email',errors) : null %> 
+                <% } %>
+              </i>
+            </div>
+        </div>
+        <!--  Password-->
+        <div class="col-md-4">
+          <div class='form-group'>
+            <label for="password"> Contraseña </label>
+            <input type="password" name="password" data-name="Contraseña" id="password" class="form-control 
+              <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+               <%= hasErrorGetMessage('password',errors) ? 'is-invalid' : null %> 
+              <% } %>
+              "
+            >
+            <i class='invalid-feedback'>
+              <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                <%= hasErrorGetMessage('password',errors) ? hasErrorGetMessage('password',errors) : null %> 
+              <% } %>
+            </i>
+          </div>
+        </div>
+        <!-- Repetir Password-->
+        <div class="col-md-4">
+          <div class='form-group'>
+            <label for="re_password"> Repetir Contraseña </label>
+            <input type="password" name="re_password" data-name="Repetir Contraseña" id="re_password" class="form-control 
+              <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                <%= hasErrorGetMessage('re_password',errors) ? 'is-invalid' : null %> 
+              <% } %>
+              "
+            >
+            <i class='invalid-feedback'>
+              <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                <%= hasErrorGetMessage('re_password',errors) ? hasErrorGetMessage('re_password',errors) : null %> 
+              <% } %>
+            </i>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <br>
+
+      <div class="row">
+        <h2>Información personal</h2>
+      </div>  
+
+      <br>
+
+        <div class="row">
+          <!-- Nombre -->
+          <div class="col-md-6">
+            <div class='form-group'>
+              <label for=”nombre”> Nombre </label>
+              <input type=”text” name="firstName" data-name="Nombre" id=”nombre” class="form-control 
+              <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                <%= hasErrorGetMessage('firstName',errors) ? 'is-invalid' : null %> 
+              <% } %>
+              "
+              value="<%= typeof OldData !== 'undefined' ? OldData.firstName : null %>"
+            >
+            <i class='invalid-feedback'>
+              <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                <%= hasErrorGetMessage('firstName',errors) ? hasErrorGetMessage('firstName',errors) : null %> 
+              <% } %>
+            </i>
+            </div>
+          </div>
+            <!-- Apellido -->
+            <div class="col-md-6">
+              <div class='form-group'>
+                <label for=”apellido”> Apellido </label>
+                <input type=”text” name="lastName" data-name="Apellido"id=”apellido” class="form-control 
+                <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                  <%= hasErrorGetMessage('lastName',errors) ? 'is-invalid' : null %> 
+                <% } %>
+                "
+                value="<%= typeof OldData !== 'undefined' ? OldData.lastName : null %>"
+                >
+              <i class='invalid-feedback'>
+                <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                  <%= hasErrorGetMessage('lastName',errors) ? hasErrorGetMessage('lastName',errors) : null %> 
+                <% } %>
+              </i>
+              </div>
+            </div>
+        </div>
+
+        <br>
+      
+        <div class="row">
+          <!-- Teléfono -->
+          <div class="col-md-6">
+            <div class='form-group'>
+              <label for="telefono"> Teléfono </label>
+              <input type="tel" name="phone"data-name="Telefono" id="telefono" class="form-control 
+              <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                <%= hasErrorGetMessage('phone',errors) ? 'is-invalid' : null %> 
+              <% } %>
+              "
+              value="<%= typeof OldData !== 'undefined' ? OldData.phone : null %>"
+              >
+            <i class='invalid-feedback'>
+              <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                <%= hasErrorGetMessage('phone',errors) ? hasErrorGetMessage('phone',errors) : null %> 
+              <% } %>
+            </i>
+            </div>
+          </div>
+          <!-- Fecha de nacimiento -->
+          <div class="col-md-6">
+            <div class='form-group'>
+              <label for="nacimiento"> Fecha de nacimiento </label>
+              <input type="date" name="dob" data-name="Fecha de nacimiento" id="nacimiento" class="form-control 
+              <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                <%= hasErrorGetMessage('dob',errors) ? 'is-invalid' : null %> 
+              <% } %>
+              "
+              value="<%= typeof OldData !== 'undefined' ? OldData.dob : null %>"
+              >
+            <i class='invalid-feedback'>
+              <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                <%= hasErrorGetMessage('dob',errors) ? hasErrorGetMessage('dob',errors) : null %> 
+              <% } %>
+            </i>
+            </div>
+          </div>
+      </div>
+
+      <br>
+
+        <div class="row">
+          <!-- Calle -->
+          <div class="col-md-4">
+            <div class='form-group'>
+              <label for=”calle”> Calle </label>
+              <input type=”text” name="street"data-name="Calle" id=”calle” class="form-control 
+              <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                <%= hasErrorGetMessage('street',errors) ? 'is-invalid' : null %> 
+              <% } %>
+              "
+              value="<%= typeof OldData !== 'undefined' ? OldData.street : null %>"
+              >
+            <i class='invalid-feedback'>
+              <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                <%= hasErrorGetMessage('street',errors) ? hasErrorGetMessage('street',errors) : null %> 
+              <% } %>
+            </i>
+            </div>
+          </div>
+            <!-- Numero de Calle -->
+            <div class="col-md-4">
+              <div class='form-group'>
+                <label for=”calleNumero”> Numero </label>
+                <input type=”number” name="address_number"data-name="Numero" id=”calleNumero” class="form-control 
+                <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                  <%= hasErrorGetMessage('address_number',errors) ? 'is-invalid' : null %> 
+                <% } %>
+                "
+                value="<%= typeof OldData !== 'undefined' ? OldData.address_number : null %>"
+                >
+              <i class='invalid-feedback'>
+                <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                  <%= hasErrorGetMessage('address_number',errors) ? hasErrorGetMessage('address_number',errors) : null %> 
+                <% } %>
+              </i>
+              </div>
+            </div>
+            <!-- Piso. Departamento -->
+            <div class="col-md-4">
+              <div class='form-group'>
+                <label for="piso"> Piso-Departamento </label>
+                <input type="text" name="floor" data-name="Piso-departamento" id="piso" class="form-control 
+                <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                  <%= hasErrorGetMessage('floor',errors) ? 'is-invalid' : null %> 
+                <% } %>
+                "
+                value="<%= typeof OldData !== 'undefined' ? OldData.floor : null %>"
+                >
+              <i class='invalid-feedback'>
+                <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                  <%= hasErrorGetMessage('floor',errors) ? hasErrorGetMessage('floor',errors) : null %> 
+                <% } %>
+              </i>
+              </div>
+            </div>
+        </div>
+        <br>
+        
+        <div class="row">
+          <!-- Código Postal -->
+          <div class="col-md-4">
+            <div class='form-group'>
+              <label for="postal"> Código Postal </label>
+              <input type="text" name="zip_code"data-name="Codigo postal" id="postal" class="form-control 
+              <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                <%= hasErrorGetMessage('zip_code',errors) ? 'is-invalid' : null %> 
+              <% } %>
+              "
+              value="<%= typeof OldData !== 'undefined' ? OldData.zip_code : null %>"
+              >
+            <i class='invalid-feedback'>
+              <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                <%= hasErrorGetMessage('zip_code',errors) ? hasErrorGetMessage('zip_code',errors) : null %> 
+              <% } %>
+            </i>
+            </div>
+          </div>
+            <!-- Provincia -->
+            <div class="col-md-4">
+              <div class='form-group'>
+                <label for="provincia"> Provincia </label>
+                <input type="text" name="province"data-name="Provincia" id="provincia" class="form-control 
+                <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                  <%= hasErrorGetMessage('province',errors) ? 'is-invalid' : null %> 
+                <% } %>
+                "
+                value="<%= typeof OldData !== 'undefined' ? OldData.province : null %>"
+                >
+              <i class='invalid-feedback'>
+                <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                  <%= hasErrorGetMessage('province',errors) ? hasErrorGetMessage('province',errors) : null %> 
+                <% } %>
+              </i>
+              </div>
+            </div>
+            <!-- Pais -->
+            <div class="col-md-4">
+              <div class="form-group">
+
+                <label> País </label>
+                <select class="selectpicker form-control" data-name="Pais" name="countryId">
+                  <option selected value="">Elige un país</option>
+                </select>
+
+                <i class='invalid-feedback'>
+                <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                  <%= hasErrorGetMessage('countryId',errors) ? hasErrorGetMessage('countryId',errors) : null %> 
+                <% } %>
+              </i>
+              </div>
+            </div>
+        </div>
+
+        <br>
+
+        <!-- Imagen -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Foto de perfil</label>
+              <div class="custom-file">
+                <input type="file" name="avatar" data-name="Imagen de perfil" class="custom-file-input
+                <% if (typeof hasErrorGetMessage !== 'undefined') { %> 
+                  <%= hasErrorGetMessage('avatar',errors) ? 'is-invalid' : null %> 
+                <% } %>
+                "
+                >
+                <p class="invalid-feedback"></p>
+                <label class="custom-file-label">Elegir archivo...</label>
+                <i class="invalid-feedback">
+                  
+                  <% if (typeof hasErrorGetMessage !== 'undefined') { %>
+                    <%= hasErrorGetMessage('avatar', errors) ? hasErrorGetMessage('avatar', errors) : null %>
+                  <% } %>
+                </i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <br>
+    
+        <!-- Boton -->
+          <div class="col-12 col-lg-6 text-right">
+              <button type=”submit” class="btn btn-success"> Registrarse </button >
+          </div>
+       
+    </form>
+ 
+    <br>
+    </div>
+
+<%- include('partials/footer') %>
+
+<!-- Api países -->
+<script src="/js/apiPaises.js"></script>
+<script src="/js/validator.min.js"></script>
+<script src="/js/validateForm.js"></script>

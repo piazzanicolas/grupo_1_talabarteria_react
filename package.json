@@ -1,0 +1,45 @@
+{
+  "name": "baseapphtml",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "client": "cd src && cd client && npm start",
+    "api": "nodemon ./src/bin/www",
+    "start": "concurrently \"npm run api\" \"npm run client\""
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "bcrypt": "3.0.6",
+    "concurrently": "^5.1.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "^2.6.2",
+    "express": "~4.16.1",
+    "express-session": "^1.17.0",
+    "express-validator": "^6.4.0",
+    "http-errors": "~1.6.3",
+    "inquirer": "^7.0.0",
+    "method-override": "^3.0.0",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.2",
+    "mysql2": "^2.1.0",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.1",
+    "sequelize": "^5.21.4",
+    "sweetalert2": "^9.5.4"
+  },
+  "description": "Descripcion: Market de una talabarteria Nuestro sitio comercializar�a productos de cuero como billeteras, cinturones, carteras y bolsos. La audiencia objetivo ser�an las personas que buscan productos de alta calidad, realizados con un material noble como es el cuero que tiene una gran importancia en las tradiciones de nuestro pa�s.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nicz265/grupo_1_talabarteria.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nicz265/grupo_1_talabarteria/issues"
+  },
+  "homepage": "https://github.com/Nicz265/grupo_1_talabarteria#readme",
+  "devDependencies": {}
+}

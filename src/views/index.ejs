@@ -1,0 +1,128 @@
+<%- include('partials/header')  %>
+
+<!-- Carousel-->
+<div id="carousel-promociones" class="carousel slide" data-ride="carousel" data-pause="hover">
+        <div class="carousel-inner list-promociones">
+          <div class="carousel-item active">
+            <h2>ESTA ES LA PROMO #1</h2>
+            <!-- <img src="..." class="d-block w-100" alt="..."> -->
+            <em>oferta del mes</em>
+          </div>
+          <div class="carousel-item">
+              <h2>ESTA ES LA PROMO #2</h2>
+              <!-- <img src="..." class="d-block w-100" alt="..."> -->
+              <em>oferta del mes</em>
+          </div>
+          <div class="carousel-item">
+              <h2>ESTA ES LA PROMO #3</h2>
+              <!-- <img src="..." class="d-block w-100" alt="..."> -->
+              <em>oferta del mes</em>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carousel-promociones" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-promociones" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+</div>
+<!-- Fin Carousel-->
+
+<div class="container">
+  <div class="row">
+
+    <!-- Filtros -->
+    <div class="filtros-container col-sm-12 col-md-3 col-lg-3">
+      <!-- Buscador -->
+        <form action="/" method="GET">
+          <div class="form-group">
+            <label>Buscar por nombre:</label>
+            <input type="text" name="search" placeholder="Ando buscando..." />
+          </div>
+        <div class="titulo-filtros">
+          <p>Filtrar por:</p>
+        </div>
+        <div class="filtro">
+          <p>Categoría</p>
+          <div class="caja-filtro form-group">
+            <input type="checkbox" id="marroquineria" name="marroquineria" />
+            <label for="marroquineria">Marroquinería</label><br>
+            <input type="checkbox" id="talabarteria" name="talabarteria" />
+            <label for="talabarteria">Talabartería</label><br>
+          </div>
+        </div>
+        <div class="filtro">
+          <p>Precio</p>
+          <div class="caja-filtro form-group">
+            <input type="checkbox" id="rango1" name="rango1" />
+            <label for="rango1">$0-$1.000</label><br>
+            <input type="checkbox" id="rango2" name="rango2" />
+            <label for="rango2">$1.000-$5.000</label><br>
+          </div>
+        </div>
+        <div class="filtro">
+          <p>Marca</p>
+          <div class="caja-filtro form-group">
+            <input type="checkbox" id="mustad" name="mustad"/>
+            <label for="mustad">Mustad</label><br>
+            <input type="checkbox" id="lamartina" name="lamartina"/>
+            <label for="lamartina">La Martina</label><br>
+          </div>
+        </div>
+        <button type="submit">BUSCAR</button>
+      </form>
+    </div>
+
+
+
+
+    <!-- Product List -->
+      <div class="product-container col-sm-12 col-md-6 col-lg-7">
+        <div class="row">
+
+          <!-- Producto -->
+          <% products.forEach(product => { %>
+            <div class="card product">
+              <a href="products/detalle/<%=product.id%>">
+                <img src="/images/<%= product.image %>" class="card-img-top" alt="<%= product.name %>"/>
+              </a>
+              <div class="card-body">
+                <h5 class="card-title"><%= product.name %></h5>
+                <p class="card-text"><%= product.description %></p>
+                <p class="card-text">$<%= product.price %> / Unidad</p>
+                <% if ( locals.isLogged ) { %>
+                  <form action="/user/saveProduct/<%=product.id%>" method="POST">
+                    <div class="form-group">
+                      <label for="quantity">Cantidad</label>
+                      <select name="quantity" class="form-control">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </div>
+                    <button class="btn btn-primary btn-cart" type="submit">
+                      Añadir al carrito
+                    </button>
+                  </form>
+                <% } else { %>
+                  <button type="button" class="btn btn-primary btn-cart" >
+                    Añadir al carrito
+                  </button>
+                <% } %>
+              </div>
+            </div>
+          <% }) %>
+
+        </div>
+      </div>
+      
+
+  </div>
+</div>
+<!-- Fin Central-->
+
+<%- include('partials/footer') %>
