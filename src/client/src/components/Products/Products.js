@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Filters from "./Products/Filters"
-import Product from "./Products/Product"
-import Carousel from "./Layout/Carousel"
+import Filters from "./Filters"
+import Product from "./Product"
+import Carousel from "../Layout/Carousel"
 import { Row, Container } from 'react-bootstrap';
 
 class Products extends Component {

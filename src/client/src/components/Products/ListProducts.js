@@ -79,7 +79,7 @@ class ListProducts extends Component {
 												</td>
 												<td>{oneProduct.brand.name}</td>
 												<td style={{textAlign: "center"}}>
-													<form action="/products/<%= product.id %>/edit">
+													<form action={`/products/${oneProduct.id}/edit`}>
 														<button className="btn btn-block edit-button">
 															Editar
 														</button>  
