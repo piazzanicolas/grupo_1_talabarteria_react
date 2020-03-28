@@ -6,27 +6,39 @@ class Edit extends Component {
 		super(props);
 		this.state = {
 			product: [],
-			loading: true,
+            loading: true,
+            brands: [],
+            colors: [],
+            categories: [],
 		}
 	}
 
 	// Ciclo de vida
-	componentDidMount () {	
-		fetch(`http://localhost:3000/api/products/${this.props.match.params.id}/?format=json`)
-			.then(response => response.json())
-			.then(data => {
-				// Setear el estado
-				this.setState({
-					product: data.product, 
-					loading: false,
+	componentDidMount () {	  
+        Promise.all([
+            fetch(`http://localhost:3000/api/brands`),
+            fetch(`http://localhost:3000/api/colors`),
+            fetch(`http://localhost:3000/api/categories`),
+            fetch(`http://localhost:3000/api/products/${this.props.match.params.id}/?format=json`)
+            ])
+            .then((results) => 
+                Promise.all(results.map(r => r.json()))
+            )
+            .then((data) => {
+                this.setState({ 
+                    brands: data[0].brands,
+                    colors: data[1].colors, 
+                    categories: data[2].categories,
+                    product: data[3].product, 
+					loading: false, 
                 })
-			})
-			.catch(error => console.log(error));
+            })
+            .catch(error => console.log(error));
 	}
 	
 	// Render de componente
 	render() {
-        let { product, loading } = this.state;
+        let { product, loading, brands, colors, categories } = this.state;
 		return (
             <React.Fragment>
                 	{
@@ -58,7 +70,7 @@ class Edit extends Component {
                                 <div className="col-md-4">
                                     <div className="form-group">
                                     <label htmlFor='name'> Nombre </label>
-                                    <input type='text' name='name' id='name' className="form-control" defaultValue='<%= product.name %>' data-name="Nombre"/>
+                                    <input type='text' name='name' id='name' className="form-control" defaultValue={product.name} data-name="Nombre"/>
                                     </div>
                                 </div>
 
@@ -67,6 +79,13 @@ class Edit extends Component {
                                         <label htmlFor="category_id"> Categoría </label>
                                         <select name="category_id" className="form-control" data-name="Categoría">
                                             <option defaultValue="">Elige una categoría</option>
+                                                {categories.map((oneCategory, i) => {
+                                                    return (
+                                                    <option value={oneCategory.id} key={i}>
+                                                        {oneCategory.name}
+                                                    </option> )
+                                                }) 
+                                                }
                                         </select>
                                     </div>
                                 </div>
@@ -74,7 +93,7 @@ class Edit extends Component {
                                 <div className="col-md-4">
                                     <div className="form-group">
                                         <label htmlFor='price'> Precio </label>
-                                        <input type='number' name='price' id='price' className="form-control" defaultValue='<%= product.price %>' data-name="Precio"/>
+                                        <input type='number' name='price' id='price' className="form-control" defaultValue={product.price} data-name="Precio"/>
                                     </div>
                                 </div>
                             </div>
@@ -85,6 +104,13 @@ class Edit extends Component {
                                         <label htmlFor="brand_id"> Marca </label>
                                         <select name="brand_id" className="form-control" data-name="Marca">
                                             <option defaultValue="">Elige una marca</option>
+                                                {brands.map((oneBrand, i) => {
+                                                    return (
+                                                    <option value={oneBrand.id} key={i}>
+                                                        {oneBrand.name}
+                                                    </option> )
+                                                }) 
+                                                }
                                         </select>
                                     </div>
                                 </div>
@@ -92,7 +118,7 @@ class Edit extends Component {
                                 <div className="col-md-4">
                                     <div className="form-group">
                                         <label htmlFor='description' id='description'> Descripción </label>
-                                        <textarea name='description' className="form-control" data-name="Descripción" rows="3" defaultValue=""/>
+                                        <textarea name='description' className="form-control" data-name="Descripción" rows="3" defaultValue={product.description}/>
                                     </div>
                                 </div>
 
@@ -100,6 +126,13 @@ class Edit extends Component {
                                     <div className="form-group">
                                         <label htmlFor="color"> Color </label>
                                         <select name="color" className="form-control" data-name="Color" multiple>
+                                            {colors.map((oneColor, i) => {
+                                                return (
+                                                <option value={oneColor.id} key={i}>
+                                                    {oneColor.name}
+                                                </option> )
+                                            }) 
+                                            }
                                         </select>
                                     </div>
                                 </div>

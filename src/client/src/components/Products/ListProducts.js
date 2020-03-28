@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash, faPenSquare } from '@fortawesome/free-solid-svg-icons'
 
 class ListProducts extends Component {
 	// Inicializando el Estado de un Componente
@@ -81,12 +83,12 @@ class ListProducts extends Component {
 												<td style={{textAlign: "center"}}>
 													<form action={`/products/${oneProduct.id}/edit`}>
 														<button className="btn btn-block edit-button">
-															Editar
+															<FontAwesomeIcon icon={faPenSquare} />
 														</button>  
 													</form> 
 													<form action="/products/<%= product.id %>/delete?_method=DELETE" method="POST">
 														<button className="btn btn-block delete-button" type="submit" >
-															Borrar
+															<FontAwesomeIcon icon={faTrash} />
 														</button>
 													</form>
 												</td>

@@ -1,5 +1,3 @@
-const fs = require('fs');
-const path = require('path');
 const db = require('../database/models');
 const Products = db.products;
 
@@ -68,12 +66,6 @@ const controller = {
             });
         }
     },
-
-
-    showImage: (req, res) => {
-        let route = path.join(__dirname, '../../public/images', `/${req.params.name}`);
-        return res.sendFile(route)
-    }
 };
 
 module.exports = controller

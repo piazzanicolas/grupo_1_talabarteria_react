@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 class Cart extends Component {
 	// Inicializando el Estado de un Componente
@@ -13,7 +15,7 @@ class Cart extends Component {
     
     // Ciclo de vida
 	componentDidMount () {	
-		fetch("http://localhost:3000/api/cart/4/?format=json")
+		fetch("http://localhost:3000/api/users/cart/4/?format=json")
 			.then(response => response.json())
 			.then(data => {
 			// Setear el estado
@@ -84,7 +86,7 @@ class Cart extends Component {
                                             <div className="col-2">
                                                 <form action="/user/deleteProduct/<%= oneProduct.id %>?_method=DELETE" method="POST">
                                                     <button className="btn btn-block delete-button" type="submit">
-                                                        Borrar
+                                                        <FontAwesomeIcon icon={faTrash} />
                                                     </button>
                                                 </form>
                                             </div>
