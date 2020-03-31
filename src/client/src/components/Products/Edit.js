@@ -64,7 +64,7 @@ class Edit extends Component {
                         </div>
                         <br/>
                 
-                        <form action="/products/<%= product.id %>/edit?_method=PUT" method="POST" encType="multipart/form-data" id="validateFormEdit"> 
+                        <form action={`http://localhost:3000/api/products/${product.id}/edit?_method=PUT`} method="POST" encType="multipart/form-data" id="validateFormEdit"> 
                 
                             <div className='row'>
                                 <div className="col-md-4">

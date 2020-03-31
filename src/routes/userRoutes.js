@@ -5,7 +5,7 @@ const router = express.Router();
 // ************ Controller Require ************
 const userController = require('../controllers/userController');
 
-// Middlewares
+//  *********** Middlewares ***********
 const authMiddleware = require('../middlewares/authMiddleware');
 const guestMiddleware = require('../middlewares/guestMiddleware');
 const upload = require('../middlewares/upload');

@@ -5,6 +5,10 @@ const router = express.Router();
 // ************ Controller Require ************
 const apiUserController = require('../controllers/apiUserController');
 
+//  *********** Middlewares ***********
+const upload = require('../middlewares/upload');
+const registerValidation = require('../middlewares/registerValidatorMiddleware')
+
 /* GET - All Users */
 router.get('/', apiUserController.showAllUsers);
 
@@ -16,5 +20,8 @@ router.get('/email/:email', apiUserController.userByEmail);
 
 /* GET - User cart */
 router.get('/cart/:id', apiUserController.cartView);
+
+/* POST - New user */
+router.post('/registro', upload.single('avatar'), registerValidation, apiUserController.saveUser);
 
 module.exports = router;

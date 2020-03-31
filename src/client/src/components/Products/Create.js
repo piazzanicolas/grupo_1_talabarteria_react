@@ -53,7 +53,7 @@ class Create extends Component {
                         </div>
                     </div>
                     <br/>
-                    <form action="/products/carga" method="POST" encType="multipart/form-data" id="validateFormCarga"> 
+                    <form action="http://localhost:3000/api/products/carga" method="POST" encType="multipart/form-data" id="validateFormCarga"> 
                         <div className="row">
                             <div className="col-md-4">
                                 <div className="form-group">

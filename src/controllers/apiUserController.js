@@ -1,6 +1,8 @@
 const db = require('../database/models/');
+const bcrypt = require('bcrypt');
 const Users = db.users;
 const Cart = db.productUser;
+const {validationResult} = require('express-validator');
 
 // Controller Methods
 const controller = {
@@ -73,7 +75,48 @@ const controller = {
             msg: "Carrito vacío"
             });
         }
-	},
+    },
+    
+
+    saveUser: (req,res) => {
+
+		const hasErrorGetMessage = (field, errorsView) => {
+			for (const oneError of errorsView) {
+				if (oneError.param == field) {
+					return oneError.msg;
+				}
+			}
+			return false;
+		}
+
+		let errorsResult = validationResult(req);
+		if (!errorsResult.isEmpty()){
+			// Vuelvo a hacer la consulta a la base de datos para generar la vista
+			Countries
+				.findAll()
+				.then(countries => {
+					return res.render('registro', {errors: errorsResult.array(), hasErrorGetMessage: hasErrorGetMessage, OldData: req.body, countries});
+				})
+			
+		} else {
+			req.body.password = bcrypt.hashSync(req.body.password, 11);
+			delete req.body.re_password;
+			req.body.avatar = req.file.filename;
+			req.body.isActive = 1;
+			//let user = storeUser(req.body);
+			
+			req.session.user = req.body;
+			res.locals.user = req.body;
+			res.cookie('userCookie', req.body.id, { maxAge: 60000 * 60 });
+			
+			Users.create(req.body)
+				.then(user => {
+					return res.redirect("http://localhost:3001/user/profile");
+				})
+				.catch(error => res.send(error));
+
+		
+		}},
 };
 
 module.exports = controller

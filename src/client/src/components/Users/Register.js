@@ -37,7 +37,7 @@ render() {
           <br/>
 
 
-          <form action="/user/registro" method="POST" encType="multipart/form-data" className="container" id="validateForm"> 
+          <form action="http://localhost:3000/api/users/registro" method="POST" encType="multipart/form-data" className="container" id="validateForm"> 
       
             <Row>
               <h2>Datos inicio de sesión</h2>

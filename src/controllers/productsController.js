@@ -215,7 +215,7 @@ const controller = {
 			.then (async product => {
 				await product.removeColors(product.colors);
 				await product.destroy();
-				return res.redirect('/products');
+				return res.redirect("/products");
 		})
 			.catch(error => res.send(error));
 	}

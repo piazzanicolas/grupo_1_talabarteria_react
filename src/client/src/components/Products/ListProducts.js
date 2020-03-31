@@ -28,6 +28,7 @@ class ListProducts extends Component {
 	
 	render () {
 		let { products, loading } = this.state
+		console.log(products)
 		return (
 			<div className="card border-primary mb-3">
 				<div className="card-body text-primary">
@@ -86,7 +87,7 @@ class ListProducts extends Component {
 															<FontAwesomeIcon icon={faPenSquare} />
 														</button>  
 													</form> 
-													<form action="/products/<%= product.id %>/delete?_method=DELETE" method="POST">
+													<form action={`http://localhost:3000/api/products/${oneProduct.id}/delete?_method=DELETE`} method="POST">
 														<button className="btn btn-block delete-button" type="submit" >
 															<FontAwesomeIcon icon={faTrash} />
 														</button>
