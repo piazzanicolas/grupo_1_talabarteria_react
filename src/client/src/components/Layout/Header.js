@@ -16,7 +16,9 @@ function Header () {
                             <Button variant="primary" href="/user/profile" className="btn-login">Perfil</Button>
                         </Col>
                         <Col lg={2} className="text-center align-self-center">
-                            <Button variant="danger" href="/user/logout" className="btn-login">Cerrar Sesión</Button>
+                            <form action="http://localhost:3000/api/users/logout" method="POST">
+                                <Button variant="danger" type="submit" className="btn-login">Cerrar Sesión</Button>
+                            </form>
                         </Col>
                         <Col lg={2} className="text-center align-self-center">
                             <Button variant="secondary" href="/user/registro" className="btn-login">Registrarse</Button>
@@ -28,6 +30,11 @@ function Header () {
                             <img src="/assets/images/cart.png" alt="Carrito" />
                             </a>
                         </Col>
+
+                        <Col lg={2} className="text-center align-self-center">
+                            <Button variant="btn btn-primary" href="/user/login" className="btn-login">Ingresar</Button>
+                        </Col>
+
                     </Row>
                 </Container> 
             </header>

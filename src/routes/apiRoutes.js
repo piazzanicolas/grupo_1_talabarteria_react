@@ -17,4 +17,7 @@ router.get('/brands', apiController.showBrands);
 /* GET - Categories*/
 router.get('/categories', apiController.showCategories);
 
+/* GET - Buscador */
+router.get('/search', apiController.search);
+
 module.exports = router;

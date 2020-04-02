@@ -24,4 +24,10 @@ router.get('/cart/:id', apiUserController.cartView);
 /* POST - New user */
 router.post('/registro', upload.single('avatar'), registerValidation, apiUserController.saveUser);
 
+/* POST - Login user */
+router.post('/login', apiUserController.processLogin);
+
+/* POST - Logout user */
+router.post('/logout', apiUserController.logout);
+
 module.exports = router;

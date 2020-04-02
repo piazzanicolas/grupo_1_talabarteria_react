@@ -1,5 +1,6 @@
 const db = require('../database/models/');
 const bcrypt = require('bcrypt');
+const jwt= require('jsonwebtoken')
 const Users = db.users;
 const Cart = db.productUser;
 const {validationResult} = require('express-validator');
@@ -116,7 +117,61 @@ const controller = {
 				.catch(error => res.send(error));
 
 		
-		}},
+        }
+    },
+
+
+    processLogin: (req, res) => {
+        Users
+            .findOne({
+                where: {
+                    email: req.body.email
+                }
+            })
+            .then( (user) => {
+            if (user != undefined) {
+                if (bcrypt.compareSync(req.body.password, user.password)){
+                    
+                    req.session.user = user;
+                    res.locals.user = user;
+                    if (req.body.remember){
+                        res.cookie('userCookie', user.id, { maxAge: 60000 * 60 });
+                    }
+
+                    // ***** JWT START ***** //
+                    const payload = {
+                        user: {
+                            id: user.id,
+                            name: user.firstName
+                        }
+                    };
+                    jwt.sign(payload,"talabarteria",{expiresIn: 3600 * 60},
+                    (err, token) => {
+                        if (err) throw err;
+                        res.status(200).json({token});
+                    });
+                    // ***** JWT END ***** //
+
+                    return res.redirect("http://localhost:3001/user/profile");
+                } else {
+                    res.send('Alguno de los datos es incorrecto.');
+                }
+
+            } else {
+                res.send('Alguno de los datos es incorrecto.')
+            }
+            })
+            .catch( error => res.send(error))
+    },
+    
+
+    logout: (req, res) => {
+		req.session.destroy();
+		res.locals.user = undefined;
+		res.cookie('userCookie',null,{ maxAge: -1 });
+		return res.redirect("http://localhost:3001/");
+	},
+        
 };
 
 module.exports = controller
